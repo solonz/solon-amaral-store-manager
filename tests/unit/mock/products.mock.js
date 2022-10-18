@@ -20,4 +20,11 @@ const productFound = [
   }
 ]
 
-module.exports = { products, productFound }
+const createProduct = [
+  {
+    "id": 4,
+    "name": "Manopla de Thanos"
+  }
+]
+
+module.exports = { products, productFound, createProduct }

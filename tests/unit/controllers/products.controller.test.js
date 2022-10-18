@@ -7,7 +7,7 @@ chai.use(sinonChai);
 const connection = require('../../../src/models/connection');
 const productsController = require('../../../src/controllers/products.controller')
 const productsService = require('../../../src/services/products.service');
-const { products, productFound } = require('../mock/products.mock');
+const { products, productFound, createProduct } = require('../mock/products.mock');
 
 describe('Controller tests', function () {
   afterEach(sinon.restore);
@@ -29,7 +29,7 @@ describe('Controller tests', function () {
       const res = {};
       res.status = sinon.stub().returns(res);
       res.json = sinon.stub().returns();
-      sinon.stub(productsService, 'doesFindByIdWorks').resolves({ type: null, message: productFound });
+      sinon.stub(productsService, 'doesFindByIdWorks').resolves({ type: null, message: createProduct });
       
       await productsController.getProduct(req, res);
       expect(res.status).to.have.been.calledWith(200);
@@ -45,5 +45,20 @@ describe('Controller tests', function () {
       await productsController.getProduct(req, res);
       expect(res.status).to.have.been.calledWith(404);
     })
+  })
+});
+
+describe('Tests createProduct', function () {
+  it('must return code 201 with all products', async function () {
+    const req = {body: {name: 'Manopla de Thanos'}};
+    const res = {};
+    res.status = sinon.stub().returns(res);
+    res.json = sinon.stub().returns();
+    const productCreated = { id: 4, name: 'Manopla de Thanos' }
+    sinon.stub(productsService, 'doesCreateProductWorks').resolves({ type: null, message: productCreated });
+
+    await productsController.createProduct(req, res);
+    expect(res.status).to.have.been.calledWith(201);
+    expect(res.json).to.have.been.calledWith(newProduct);
   })
 });

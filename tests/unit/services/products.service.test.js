@@ -55,5 +55,19 @@ describe('Service tests', function () {
         expect(result.type).to.equal('INVALID_PRODUCT');
       })
     })
+    describe('Tests createProduct', function () {
+      it('Must create', async function () {
+        sinon.stub(productsModel, 'createNewProduct').resolves('4');
+        const result = await productsService.doesCreateProductWorks('Manopla de Thanos');
+        expect(result.type).to.equal(null);
+      })
+    })
+    describe('Tests createProduct', function () {
+      it('Must fail create', async function () {
+        sinon.stub(productsModel, 'createNewProduct').resolves({id: 4, name: 'Manopla de Thanos'});
+        const result = await productsService.doesCreateProductWorks({ name: 'Manopla de Thanos' });
+        expect(result.type).to.be.equal(null);
+      })
+    })
   })
 });
