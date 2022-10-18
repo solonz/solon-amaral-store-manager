@@ -2,9 +2,12 @@ const productsModel = require('../models/products.model');
 const validations = require('./validations/validations');
 
 const doesProductExist = async (productId) => {
+  const error = validations.validateId(productId);
+  if (error.type) return { type: 'INVALID_PRODUCT', message: error };
+  
   const product = await productsModel.findById(productId);
   if (product) return true;
-  return false;
+  return { type: 'INVALID_PRODUCT', message: 'Invalid product' };
 };
 
 const doesFindAllWorks = async () => {
@@ -14,7 +17,7 @@ const doesFindAllWorks = async () => {
 
 const doesFindByIdWorks = async (productId) => {
   const error = validations.validateId(productId);
-  if (error.type) return error;
+  if (error.type) return { type: 'INVALID_PRODUCT', message: error };
 
   const product = await productsModel.findById(productId);
   if (!product) return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' };

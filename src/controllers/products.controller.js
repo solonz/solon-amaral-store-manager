@@ -12,7 +12,6 @@ const getProduct = async (req, res) => {
   const { type, message } = await productsService.doesFindByIdWorks(id);
 
   if (type) return res.status(errorMap[type]).json({ message });
-
   res.status(200).json(message);
 };
 
