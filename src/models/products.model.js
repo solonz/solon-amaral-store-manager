@@ -20,7 +20,7 @@ const createNewProduct = async (name) => {
     'INSERT INTO StoreManager.products(name) VALUES(?)',
     [name],
   );
-  return { id: newProduct.insertId, name };
+  return newProduct.insertId;
 };
 
 module.exports = {
