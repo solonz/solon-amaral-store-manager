@@ -55,9 +55,14 @@
     "method": "GET",
     "sortNum": 0,
     "created": "2022-10-14T18:07:25.864Z",
-    "modified": "2022-10-14T18:07:25.968Z",
+    "modified": "2022-10-18T18:11:51.909Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\"name\": \"solon\"}",
+      "form": []
+    },
     "tests": []
   }
 ]
