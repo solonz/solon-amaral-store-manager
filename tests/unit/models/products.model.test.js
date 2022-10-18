@@ -24,9 +24,9 @@ describe('Model tests', function () {
     })
     describe('Tests createProduct', function () {
       it('Must create', async function () {
-        sinon.stub(connection, 'execute').resolves([{inserId: 4}]);
-        const result = await productsModel.createNewProduct({ name: 'Manopla de Thanos' });
-        expect([result]).to.be.deep.equal(createProduct);
+        sinon.stub(connection, 'execute').resolves([{insertId: 4}]);
+        const result = await productsModel.createNewProduct(createProduct[0].name);
+        expect(result).to.be.deep.equal(createProduct[0]);
       })
     })
   })
