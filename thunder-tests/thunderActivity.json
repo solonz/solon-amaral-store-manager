@@ -4,13 +4,18 @@
     "colId": "history",
     "containerId": "",
     "name": "https://localhost:8000/products/999",
-    "url": "http://localhost:8000/products/99",
-    "method": "GET",
+    "url": "http://localhost:8000/products/",
+    "method": "POST",
     "sortNum": 0,
     "created": "2022-10-14T18:06:19.439Z",
-    "modified": "2022-10-14T18:33:38.640Z",
+    "modified": "2022-10-18T02:15:14.859Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "\n{\"name\": \"nome!\"}  \n",
+      "form": []
+    },
     "tests": []
   },
   {

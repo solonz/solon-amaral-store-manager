@@ -1,11 +1,19 @@
-const idSchemaa = require('./schema');
+const idSchema = require('./schema');
+const nameSchema = require('./schema');
 
 const validateId = (id) => {
-  const { error } = idSchemaa.idSchema.validate(id);
+  const { error } = idSchema.idSchema.validate(id);
   if (error) return { type: 'INVALID_VALUE', message: '"id" must be a number' };
+  return { type: null, message: '' };
+};
+
+const validateName = (name) => {
+  const { error } = nameSchema.nameSchema.validate(name);
+  if (error) return { type: 'INVALID_NAME', message: 'Invalid name' };
   return { type: null, message: '' };
 };
 
 module.exports = {
   validateId,
+  validateName,
 };

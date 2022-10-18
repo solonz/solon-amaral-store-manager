@@ -24,8 +24,23 @@ const doesFindByIdWorks = async (productId) => {
   return { type: null, message: product };
 };
 
+const doesCreateProductWorks = async (productName) => {
+  const id = await productsModel.createNewProduct(productName);
+  const result = await productsModel.findById(id);
+
+  if (!result) return { type: 'INVALID_NAME', message: 'Invalid name' };
+  return { type: null, message: result };
+//   const error = validations.validateName(productName);
+//   // if (error.type) return { type: 'INVALID_NAME', message: error };
+  
+//   const newProduct = await productsModel.createNewProduct(productName);
+//   if (newProduct) return { type: null, message: newProduct };
+//   // return { type: 'INVALID_NAME', message: 'Invalid name' };
+};
+
 module.exports = {
   doesProductExist,
   doesFindAllWorks,
   doesFindByIdWorks,
+  doesCreateProductWorks,
 };

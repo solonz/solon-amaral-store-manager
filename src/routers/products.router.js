@@ -5,6 +5,7 @@ const productsController = require('../controllers/products.controller');
 // const validateRequestTravelSchema = require('../middlewares/validatePassengerFields');
 
 const router = express.Router();
+router.use(express.json());
 
 // router.post(
 //   '/:passengerId/request/travel',
@@ -16,6 +17,7 @@ router.get('/', productsController.listAllProducts);
 
 router.get('/:id', productsController.getProduct);
 
+router.post('/', productsController.createProduct);
 // router.post(
 //   '/',
 //   validateNewPassengerFields,
