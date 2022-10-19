@@ -56,18 +56,29 @@ describe('Service tests', function () {
       })
     })
     describe('Tests createProduct', function () {
-      it('Must create', async function () {
-        sinon.stub(productsModel, 'createNewProduct').resolves('4');
+      it('Must create 1', async function () {
+        const newProductData = {id: 4, name: 'Manopla de Thanos'}
+        sinon.stub(productsModel, 'createNewProduct').resolves(4);
+        sinon.stub(productsModel, 'findById').resolves(newProductData);
         const result = await productsService.doesCreateProductWorks('Manopla de Thanos');
         expect(result.type).to.equal(null);
       })
     })
-    // describe('Tests createProduct', function () {
-    //   it('Must fail create', async function () {
-    //     sinon.stub(productsModel, 'createNewProduct').resolves({id: 4, name: 'Manopla de Thanos'});
-    //     const result = await productsService.doesCreateProductWorks({ name: 'Manopla de Thanos' });
-    //     expect(result.type).to.be.equal(null);
-    //   })
-    // })
+    describe('Tests createProduct', function () {
+      it('Must fail create', async function () {
+        sinon.stub(productsModel, 'createNewProduct').resolves({id: 1, name: 'Martelo de Thor' });
+        const result = await productsService.doesCreateProductWorks({ name: 'Martelo de Thor' });
+        expect(result.type).to.be.equal('INVALID_NAME');
+        expect(result.type).to.be.equal('INVALID_NAME');
+      })
+    })
+    describe('Tests createProduct', function () {
+      it('Must fail create', async function () {
+        sinon.stub(productsModel, 'createNewProduct').resolves('a');
+        const result = await productsService.doesCreateProductWorks('a');
+        expect(result.type).equal('INVALID_NAME');
+        expect(result.message).equal('Invalid name');
+      })
+    })
   })
 });

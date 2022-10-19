@@ -49,16 +49,38 @@ describe('Controller tests', function () {
 });
 
 describe('Tests createProduct', function () {
-  it('must return code 201 with all products', async function () {
-    const req = {body: {name: 'Manopla de Thanos'}};
+  it('controll must fail create', async function () {
     const res = {};
+    const req = {
+      body: { name: 'Ma' },
+    };
+
     res.status = sinon.stub().returns(res);
     res.json = sinon.stub().returns();
-    const productCreated = { id: 4, name: 'Manopla de Thanos' }
-    sinon.stub(productsService, 'doesCreateProductWorks').resolves({ type: null, message: productCreated });
-
+    
+    sinon.stub(productsService, 'doesCreateProductWorks').resolves({ type: 'INVALID_NAME', message: 'Invalid name' });
+  
     await productsController.createProduct(req, res);
-    expect(res.status).to.have.been.calledWith(201);
-    expect(res.json).to.have.been.calledWith(productCreated);
-  })
+
+    expect(res.status).to.have.been.calledWith(422);
+    expect(res.json).to.have.been.calledWith({ message: 'Invalid name' });
+  });
+
+  // it('controll must create', async function () {
+  //   const res = {};
+  //   const req = {
+  //     body: { name: 'Manopla de Thanos' },
+  //   };
+
+  //   res.status = sinon.stub().returns(res);
+  //   res.json = sinon.stub().returns();
+
+  //   sinon.stub(productsService, 'doesCreateProductWorks').resolves({ type: null, message: { "id": 4, name: 'Manopla de Thanos' } });
+    
+  //   await productsController.createProduct(req, res);
+
+  //   expect(res.status).to.have.been.calledWith(201);
+  //   expect(res.json).to.have.been.calledWith({ "id": 4, name: 'Manopla de Thanos' });
+  // })
 });
+

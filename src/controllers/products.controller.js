@@ -18,7 +18,7 @@ const getProduct = async (req, res) => {
 const createProduct = async (req, res) => {
   const { name } = req.body;
   const { type, message } = await productsService.doesCreateProductWorks(name);
-  if (type) return res.status(422).json(message);
+  if (type) return res.status(errorMap[type]).json({ message });
   res.status(201).json(message);
 };
 
