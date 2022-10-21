@@ -80,5 +80,13 @@ describe('Service tests', function () {
         expect(result.message).equal('"id" must be a number');
       })
     })
+    // describe('Tests findAll 999', function () {
+    //   it('retorna nada', async function () {
+    //     sinon.stub(productsModel, 'findAll').resolves(undefined);
+    //     const result = await productsService.findAll();
+    //     expect(result.type).equal('PRODUCT_NOT_FOUND');
+    //     expect(result.message).equal('Product not found');
+    //   })
+    // })
   })
 });
