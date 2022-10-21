@@ -1,5 +1,6 @@
 const express = require('express');
 const productsController = require('../controllers/products.controller');
+const nameValidation = require('../services/validations/nameValidation');
 
 // const validateNewPassengerFields = require('../middlewares/validateNewPassengerFields');
 // const validateRequestTravelSchema = require('../middlewares/validatePassengerFields');
@@ -13,11 +14,10 @@ router.use(express.json());
 //   passengerController.createTravel,
 // );
 
-router.get('/', productsController.listAllProducts);
+router.get('/', productsController.findAll);
+router.get('/:id', productsController.findById);
+router.post('/', nameValidation, productsController.createProduct);
 
-router.get('/:id', productsController.getProduct);
-
-router.post('/', productsController.createProduct);
 // router.post(
 //   '/',
 //   validateNewPassengerFields,

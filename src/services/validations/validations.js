@@ -9,7 +9,15 @@ const validateId = (id) => {
 
 const validateName = (name) => {
   const { error } = nameSchema.nameSchema.validate(name);
-  if (error) return { type: 'INVALID_NAME', message: 'Invalid name' };
+  if (error) {
+    // console.log(error);
+    // console.log(error.message);
+    // console.log(error.stack);
+    return {
+      type: 'INVALID_VALUE',
+      response: { message: '"name" length must be at least 5 characters long' },
+    };
+  }
   return { type: null, message: '' };
 };
 

@@ -25,7 +25,7 @@ describe('Model tests', function () {
     describe('Tests createProduct', function () {
       it('Must create', async function () {
         sinon.stub(connection, 'execute').resolves([{insertId: 4}]);
-        const result = await productsModel.createNewProduct(createProduct[0].name);
+        const result = await productsModel.createProduct(createProduct[0].name);
         expect(result).to.be.deep.equal(4);
       })
     })

@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 const idSchema = Joi.number().integer().min(1).required();
-const nameSchema = Joi.string().min(3).max(20).required();
+const nameSchema = Joi.string().min(5).required();
 // const pointSchema = Joi.string().min(3).required();
 
 // const waypointSchema = Joi.object({
