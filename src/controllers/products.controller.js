@@ -20,8 +20,6 @@ const createProduct = async (req, res) => {
   const { type, message } = await productsService.createProduct(name);
   // const { type, message } = await productsService.createProduct(name);
   if (type) {
-    console.log(type);
-    console.log(message);
     return res.status(422).json({ message });
   }
   res.status(201).json(message);
