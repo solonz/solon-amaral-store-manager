@@ -30,7 +30,7 @@ const createProduct = async (productName) => {
   if (error.type) return error;
   const id = await productsModel.createProduct(productName);
   const product = await productsModel.findById(id);
-  console.log(product);
+  // console.log(product);
   return { type: null, message: product };
 };
 

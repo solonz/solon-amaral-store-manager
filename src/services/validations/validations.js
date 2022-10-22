@@ -15,7 +15,7 @@ const validateName = (name) => {
     // console.log(error.stack);
     return {
       type: 'INVALID_VALUE',
-      response: { message: '"name" length must be at least 5 characters long' },
+      message: '"name" length must be at least 5 characters long',
     };
   }
   return { type: null, message: '' };
