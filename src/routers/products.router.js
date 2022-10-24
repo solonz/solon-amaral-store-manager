@@ -17,6 +17,7 @@ router.use(express.json());
 router.get('/', productsController.findAll);
 router.get('/:id', productsController.findById);
 router.post('/', nameValidation, productsController.createProduct);
+router.put('/:id', nameValidation, productsController.updateProduct);
 
 // router.post(
 //   '/',
